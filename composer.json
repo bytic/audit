@@ -1,0 +1,56 @@
+{
+  "name": "bytic/audit",
+  "type": "library",
+  "license": "MIT",
+  "description": "Audit bundle for bytic framework\n\n",
+  "keywords": [],
+  "homepage": "https://github.com/bytic/audit",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ByTIC\\Audit\\": "src/"
+    },
+    "files": [
+      "src/Utility/general.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ByTIC\\Audit\\Tests\\": "tests/src",
+      "ByTIC\\Audit\\Tests\\Fixtures\\": "tests/fixtures"
+    }
+  },
+  "require": {
+    "php": "^7.2",
+    "bytic/orm": "^0.9|^1.0",
+    "bytic/event-dispatcher": "^0.9|^1.0",
+    "symfony/var-dumper": "^5.2"
+  },
+  "require-dev": {
+    "bytic/phpqatools": "^1.0",
+    "mockery/mockery": "^1.0",
+    "bytic/migrations": "^0.12"
+  },
+  "suggest": {
+  },
+  "scripts": {
+    "tests": [
+      "@analyse",
+      "@test"
+    ],
+    "test": [
+      "phpunit"
+    ],
+    "analyse": [
+      "@stan",
+      "@psalm"
+    ],
+    "stan": "phpstan analyse",
+    "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
+  }
+}

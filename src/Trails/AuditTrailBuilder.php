@@ -4,6 +4,9 @@ namespace ByTIC\Audit\Trails;
 
 use ByTIC\Audit\Models\AuditTrails\AuditTrail;
 use ByTIC\Audit\Utility\AuditModels;
+use Nip\Http\Request;
+use Nip\Utility\Date;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Class AuditTrailBuilder
@@ -21,6 +24,8 @@ class AuditTrailBuilder
         $builder = new static();
         $builder->forModel($model);
         $builder->withEvent($event);
+        $builder->initTimestamps();
+        $builder->initRequest();
         return $builder;
     }
 
@@ -50,6 +55,15 @@ class AuditTrailBuilder
         $this->trail->setEvent($event);
     }
 
+    /**
+     * @param Request $request
+     */
+    public function populateFromRequest(ServerRequestInterface $request)
+    {
+        $this->trail->user_ip = $request->getClientIp();
+        $this->trail->user_agent = $request->headers->get('User-Agent');
+    }
+
     public function save()
     {
         $this->trail->save();
@@ -58,5 +72,21 @@ class AuditTrailBuilder
     public function __destruct()
     {
         $this->save();
+    }
+
+    protected function initTimestamps()
+    {
+        $now = Date::now();
+        $this->trail->performed_at = $now;
+        $this->trail->created_at = $now;
+    }
+
+    protected function initRequest()
+    {
+        if (!function_exists('request')) {
+            return;
+        }
+        $request = request();
+        $this->populateFromRequest($request);
     }
 }

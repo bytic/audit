@@ -13,6 +13,14 @@ use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
  * @property string $model_type
  * @property string $event
  *
+ * @property string $user_id
+ * @property string $user_type
+ * @property string $user_ip
+ * @property string $user_agent
+ *
+ * @property string|\DateTime $performed_at
+ * @property string|\DateTime $created_at
+ *
  * @property string|AsMetadataObject $metadata
  */
 trait AuditTrailTrait

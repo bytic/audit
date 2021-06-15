@@ -2,7 +2,7 @@
 
 namespace ByTIC\Audit\Application\Library\View;
 
-use ByTIC\Payments\Utility\PaymentsAssets;
+use ByTIC\Audit\Utility\AuditAssets;
 use Nip\Utility\Traits\SingletonTrait;
 
 /**
@@ -19,7 +19,7 @@ class View extends \Nip\View
      */
     protected function generateBasePath(): string
     {
-        return PaymentsAssets::basePath()
+        return AuditAssets::basePath()
             . DIRECTORY_SEPARATOR . 'resources'
             . DIRECTORY_SEPARATOR . 'views';
     }

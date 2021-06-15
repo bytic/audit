@@ -16,10 +16,7 @@ if (count($trails) < 1) {
             <?php echo translator()->trans('event'); ?>
         </th>
         <th>
-            <?php echo Users::instance()->getLabel('title.singular'); ?>
-        </th>
-        <th>
-            <?php echo translator()->trans('metadata'); ?>
+            <?php echo translator()->trans('user'); ?>
         </th>
         <th>
             <?php echo translator()->trans('created'); ?>
@@ -31,8 +28,8 @@ if (count($trails) < 1) {
     foreach ($trails as $key => $item) { ?>
         <tr>
             <td>
-                <?php
-                echo $item->getType()->getEntryDescription(); ?>
+                <?php echo $item->event; ?>
+                <?php //echo $item->getType()->getEntryDescription(); ?>
             </td>
             <td>
                 <?php
@@ -41,15 +38,12 @@ if (count($trails) < 1) {
                 echo $user ? $user->getName() : '--'; ?>
             </td>
             <td>
-                <?php
-                echo nl2br($item->notes); ?>
-            </td>
-            <td>
-                <?php
-                echo _strftime(
-                    $item->created,
-                    Nip_Locale::instance()->getOption(['time', 'dayDateTimeStringFormat'])
-                ); ?>
+                <div style="display: block">
+                    <?php echo $item->performed_at->toDayDateTimeString(); ?>
+                </div>
+                <div style="display: block">
+                    <?php echo $item->created_at->toDayDateTimeString(); ?>
+                </div>
             </td>
         </tr>
         <?php

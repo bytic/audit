@@ -11,5 +11,4 @@ use Nip\Records\Record;
 class AuditTrail extends Record
 {
     use AuditTrailTrait;
-
 }

@@ -13,6 +13,7 @@ trait AuditTrailsRepositoryTrait
 
     public function bootAuditTrailsRepositoryTrait()
     {
-        $this->morphMany('AuditTrails', ['class' => get_class(AuditModels::trails()), 'morphPrefix' => 'entry']);
+        $this->initRelations();
+        $this->morphMany('AuditTrails', ['class' => get_class(AuditModels::trails()), 'morphPrefix' => 'model']);
     }
 }

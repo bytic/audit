@@ -4,6 +4,7 @@ namespace ByTIC\Audit\Models\AuditTrails;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
+use Carbon\Carbon;
 use Nip\Records\AbstractModels\Record;
 
 /**
@@ -19,10 +20,12 @@ use Nip\Records\AbstractModels\Record;
  * @property string $user_ip
  * @property string $user_agent
  *
- * @property string|\DateTime $performed_at
- * @property string|\DateTime $created_at
+ * @property string|\DateTime|Carbon $performed_at
+ * @property string|\DateTime|Carbon $created_at
  *
  * @property string|AsMetadataObject $metadata
+ *
+ * @method getUser()
  */
 trait AuditTrailTrait
 {

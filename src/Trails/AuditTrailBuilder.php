@@ -6,6 +6,7 @@ use ByTIC\Audit\Models\AuditTrails\AuditTrail;
 use ByTIC\Audit\Utility\AuditModels;
 use ByTIC\Auth\AuthManager;
 use Nip\Http\Request;
+use Nip\Records\AbstractModels\Record;
 use Nip\Utility\Date;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -25,7 +26,8 @@ class AuditTrailBuilder
         $builder = new static();
         $builder->forModel($model);
         $builder->withEvent($event);
-        
+        $builder->withUser(null);
+
         $builder->initTimestamps();
         $builder->initRequest();
         return $builder;
@@ -50,10 +52,10 @@ class AuditTrailBuilder
     }
 
     /**
-     * @param $user
+     * @param ?Record $user
      * @return self
      */
-    public function withUser($user)
+    public function withUser($user): self
     {
         $this->trail->populateFromUser($user);
         return $this;

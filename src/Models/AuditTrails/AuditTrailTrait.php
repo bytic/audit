@@ -4,6 +4,7 @@ namespace ByTIC\Audit\Models\AuditTrails;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
+use Nip\Records\AbstractModels\Record;
 
 /**
  * Trait AuditTrailTrait
@@ -48,12 +49,17 @@ trait AuditTrailTrait
     }
 
     /**
-     * @param $user
+     * @param?Record $user
      */
     public function populateFromUser($user)
     {
-        $this->user_id = $user->id;
-        $this->user_type = $user->getManager()->getMorphName();
+        if ($user instanceof Record) {
+            $this->user_id = $user->id;
+            $this->user_type = $user->getManager()->getMorphName();
+            return;
+        }
+        $this->user_id = 0;
+        $this->user_type = null;
     }
 
     /**

@@ -7,7 +7,7 @@ use Phinx\Migration\AbstractMigration;
 /**
  * Class OrgReportsFileStatus
  */
-final class CreateSessionsTable extends AbstractMigration
+final class CreateAuditTrailsTable extends AbstractMigration
 {
     /**
      * Change Method.

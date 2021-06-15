@@ -5,6 +5,8 @@ namespace ByTIC\Audit\Trails;
 /**
  * Trait AuditTrailsRecordTrait
  * @package ByTIC\Audit\Trails
+ *
+ * @method getAuditTrails
  */
 trait AuditTrailsRecordTrait
 {

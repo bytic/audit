@@ -11,7 +11,7 @@ use ByTIC\Audit\Utility\AuditModels;
 trait HasAuditTrailsRepositoryTrait
 {
 
-    public function bootAuditTrailsRepositoryTrait()
+    public function bootHasAuditTrailsRepositoryTrait()
     {
         $this->initRelations();
         $this->morphMany('AuditTrails', ['class' => get_class(AuditModels::trails()), 'morphPrefix' => 'model']);

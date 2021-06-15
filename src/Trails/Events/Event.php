@@ -8,4 +8,8 @@ namespace ByTIC\Audit\Trails\Events;
  */
 class Event extends AbstractEvent
 {
+    public function getFormattedMessage(): string
+    {
+        return $this->getName();
+    }
 }

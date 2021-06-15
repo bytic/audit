@@ -3,6 +3,8 @@
 namespace ByTIC\Audit\Trails\Events;
 
 use ByTIC\Audit\Models\AuditTrails\AuditTrail;
+use ByTIC\Audit\Trails\AuditableModel\HasAuditTrailsRecordTrait;
+use Nip\Records\Record;
 
 /**
  * Class AbstractEvent
@@ -25,9 +27,9 @@ abstract class AbstractEvent
     protected $name;
 
     /**
-     * @var AuditTrail
+     * @var Record|HasAuditTrailsRecordTrait
      */
-    protected $trail;
+    protected $auditable;
 
     /**
      * @return mixed
@@ -48,16 +50,18 @@ abstract class AbstractEvent
     /**
      * @return AuditTrail
      */
-    public function getTrail()
+    public function getAuditable()
     {
-        return $this->trail;
+        return $this->auditable;
     }
 
     /**
-     * @param AuditTrail $trail
+     * @param AuditTrail $auditable
      */
-    public function setTrail($trail): void
+    public function setAuditable($auditable): void
     {
-        $this->trail = $trail;
+        $this->auditable = $auditable;
     }
+
+    abstract public function getFormattedMessage() : string;
 }

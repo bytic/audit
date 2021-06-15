@@ -28,8 +28,7 @@ if (count($trails) < 1) {
     foreach ($trails as $key => $item) { ?>
         <tr>
             <td>
-                <?php echo $item->event; ?>
-                <?php //echo $item->getType()->getEntryDescription(); ?>
+                <?php echo $item->getEvent()->getFormattedMessage(); ?>
             </td>
             <td>
                 <?php

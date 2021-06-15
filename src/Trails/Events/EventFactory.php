@@ -19,7 +19,7 @@ class EventFactory
         $class = static::eventClass($trail);
         /** @var Event $event */
         $event = new $class();
-        $event->setTrail($trail->getA);
+        $event->setAuditable($trail->getAuditableRecord());
         $event->setName($trail->getPropertyRaw('event'));
         return $event;
     }

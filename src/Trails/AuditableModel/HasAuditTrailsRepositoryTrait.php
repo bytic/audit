@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Audit\Trails;
+namespace ByTIC\Audit\Trails\AuditableModel;
 
 use ByTIC\Audit\Utility\AuditModels;
 
 /**
- * Trait AuditTrailsRepositoryTrait
- * @package ByTIC\Audit\Trails
+ * Trait HasAuditableTrailsRepositoryTrait
+ * @package ByTIC\Audit\Trails\AuditableModel
  */
-trait AuditTrailsRepositoryTrait
+trait HasAuditTrailsRepositoryTrait
 {
 
     public function bootAuditTrailsRepositoryTrait()

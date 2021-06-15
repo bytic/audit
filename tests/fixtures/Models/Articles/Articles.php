@@ -2,7 +2,7 @@
 
 namespace ByTIC\Audit\Tests\Fixtures\Models\Articles;
 
-use ByTIC\Audit\Trails\AuditTrailsRepositoryTrait;
+use ByTIC\Audit\Trails\AuditableModel\HasAuditTrailsRepositoryTrait;
 use Nip\Records\RecordManager;
 use Nip\Utility\Traits\SingletonTrait;
 
@@ -13,7 +13,7 @@ use Nip\Utility\Traits\SingletonTrait;
  */
 class Articles extends RecordManager
 {
-    use AuditTrailsRepositoryTrait;
+    use HasAuditTrailsRepositoryTrait;
     use SingletonTrait;
 
     public function generateModelClass($class = null)

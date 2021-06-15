@@ -3,7 +3,7 @@
 namespace ByTIC\Audit\Utility;
 
 use ByTIC\Audit\Application\Library\View\View;
-use ByTIC\Audit\Trails\AuditTrailsRecordTrait;
+use ByTIC\Audit\Trails\HasAuditableTrailsRecordTrait;
 
 /**
  * Class AuditViews
@@ -13,7 +13,7 @@ class AuditViews
 {
 
     /**
-     * @param AuditTrailsRecordTrait $item
+     * @param HasAuditableTrailsRecordTrait $item
      *
      * @return null|string
      */

@@ -3,7 +3,7 @@
 namespace ByTIC\Audit\Utility;
 
 use ByTIC\Audit\Application\Library\View\View;
-use ByTIC\Audit\Trails\AuditTrailsRecordTrait;
+use ByTIC\Audit\Trails\HasAuditableTrailsRecordTrait;
 
 /**
  * Class AuditAssets

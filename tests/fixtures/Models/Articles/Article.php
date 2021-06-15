@@ -2,7 +2,7 @@
 
 namespace ByTIC\Audit\Tests\Fixtures\Models\Articles;
 
-use ByTIC\Audit\Trails\AuditTrailsRecordTrait;
+use ByTIC\Audit\Trails\AuditableModel\HasAuditTrailsRecordTrait;
 use Nip\Records\Record;
 
 /**
@@ -10,7 +10,7 @@ use Nip\Records\Record;
  */
 class Article extends Record
 {
-    use AuditTrailsRecordTrait;
+    use HasAuditTrailsRecordTrait;
 
     /**
      * @return string

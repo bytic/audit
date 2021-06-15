@@ -1,14 +1,16 @@
 <?php
 
-namespace ByTIC\Audit\Trails;
+namespace ByTIC\Audit\Trails\AuditableModel;
+
+use ByTIC\Audit\Trails\AuditTrailBuilder;
 
 /**
- * Trait AuditTrailsRecordTrait
- * @package ByTIC\Audit\Trails
+ * Trait HasAuditableTrailsRecordTrait
+ * @package ByTIC\Audit\Trails\AuditableModel
  *
  * @method getAuditTrails
  */
-trait AuditTrailsRecordTrait
+trait HasAuditTrailsRecordTrait
 {
     /**
      * @param null $event

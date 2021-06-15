@@ -38,5 +38,6 @@ trait AuditTrailsTrait
     protected function initRelationsAuditTrails()
     {
         $this->morphTo('User', ['morphPrefix' => 'user']);
+        $this->morphTo('AuditableRecord', ['morphPrefix' => 'model']);
     }
 }

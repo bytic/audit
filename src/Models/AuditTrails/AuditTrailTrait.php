@@ -2,6 +2,7 @@
 
 namespace ByTIC\Audit\Models\AuditTrails;
 
+use ByTIC\Audit\Trails\Events\EventFactory;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use Carbon\Carbon;
@@ -25,11 +26,14 @@ use Nip\Records\AbstractModels\Record;
  *
  * @property string|AsMetadataObject $metadata
  *
- * @method getUser()
+ * @method Record getUser()
+ * @method Record getAuditableRecord()
  */
 trait AuditTrailTrait
 {
     use TimestampableTrait;
+
+    protected $event = null;
 
     /**
      * @var string
@@ -40,6 +44,17 @@ trait AuditTrailTrait
     {
         $this->addCast('performed_at', 'datetime');
         $this->addCast('metadata', AsMetadataObject::class . ':json');
+    }
+
+    /**
+     * @return \ByTIC\Audit\Trails\Events\Event|string
+     */
+    public function getEvent()
+    {
+        if ($this->event === null) {
+            $this->event = EventFactory::for($this);
+        }
+        return $this->event;
     }
 
     /**

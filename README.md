@@ -9,7 +9,9 @@ Audit bundle for bytic framework
 * https://github.com/asinfotrack/yii2-audittrail
 * https://github.com/Cranky4/change-log-behavior
 * https://github.com/seancheung/history
+  
 * https://github.com/laravel-enso/history-tracker
+* https://packagist.org/packages/venturecraft/revisionable
 * https://github.com/orisintel/laravel-model-auditlog
 * https://github.com/owen-it/laravel-auditing-doc
-* 
+* https://github.com/stillosprd/audit

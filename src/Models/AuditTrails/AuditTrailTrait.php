@@ -48,6 +48,15 @@ trait AuditTrailTrait
     }
 
     /**
+     * @param $user
+     */
+    public function populateFromUser($user)
+    {
+        $this->user_id = $user->id;
+        $this->user_type = $user->getManager()->getMorphName();
+    }
+
+    /**
      * @param $model
      */
     public function populateFromModel($model)

@@ -28,6 +28,7 @@
   "require": {
     "php": "^7.2",
     "psr/http-message": "^1.0",
+    "bytic/auth": "^0.9|^1.0",
     "bytic/orm": "^0.9|^1.0",
     "bytic/event-dispatcher": "^0.9|^1.0",
     "symfony/var-dumper": "^5.2"

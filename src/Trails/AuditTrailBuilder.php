@@ -4,7 +4,7 @@ namespace ByTIC\Audit\Trails;
 
 use ByTIC\Audit\Models\AuditTrails\AuditTrail;
 use ByTIC\Audit\Utility\AuditModels;
-use ByTIC\Auth\AuthManager;
+use ByTIC\DataObjects\Casts\Metadata\Metadata;
 use Nip\Http\Request;
 use Nip\Records\AbstractModels\Record;
 use Nip\Utility\Date;
@@ -51,9 +51,9 @@ class AuditTrailBuilder
         return $this;
     }
 
-    public function withMetadata($metadata): AuditTrailBuilder
+    public function withMetadata(array $metadata): AuditTrailBuilder
     {
-        $this->trail->metadata = $metadata;
+        $this->trail->metadata = new Metadata($metadata);
         return $this;
     }
 

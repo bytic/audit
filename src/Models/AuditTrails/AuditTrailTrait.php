@@ -27,7 +27,6 @@ use Nip\Records\AbstractModels\Record;
  *
  * @property string|Metadata $metadata
  *
- * @method Record getUser()
  * @method Record getAuditableRecord()
  */
 trait AuditTrailTrait
@@ -56,6 +55,17 @@ trait AuditTrailTrait
             $this->eventObject = EventFactory::for($this);
         }
         return $this->eventObject;
+    }
+
+    /**
+     * @return bool|Record|void|null
+     */
+    public function getUser()
+    {
+        if (empty($this->user_id) || empty($this->user_type)) {
+            return null;
+        }
+        return $this->isCallRelationOperation('getUser');
     }
 
     /**

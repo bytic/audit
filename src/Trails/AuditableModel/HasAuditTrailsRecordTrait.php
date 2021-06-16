@@ -16,8 +16,8 @@ trait HasAuditTrailsRecordTrait
      * @param null $event
      * @return AuditTrailBuilder
      */
-    public function addAuditTrail($event = null): AuditTrailBuilder
+    public function addAuditTrail($event = null, $metadata = []): AuditTrailBuilder
     {
-        return AuditTrailBuilder::for($this, $event);
+        return AuditTrailBuilder::for($this, $event)->withMetadata($metadata);
     }
 }

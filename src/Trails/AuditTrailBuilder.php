@@ -51,6 +51,12 @@ class AuditTrailBuilder
         return $this;
     }
 
+    public function withMetadata($metadata): AuditTrailBuilder
+    {
+        $this->trail->metadata = $metadata;
+        return $this;
+    }
+
     /**
      * @param ?Record $user
      * @return self

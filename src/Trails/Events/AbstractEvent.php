@@ -4,6 +4,7 @@ namespace ByTIC\Audit\Trails\Events;
 
 use ByTIC\Audit\Models\AuditTrails\AuditTrail;
 use ByTIC\Audit\Trails\AuditableModel\HasAuditTrailsRecordTrait;
+use ByTIC\DataObjects\Casts\Metadata\Metadata;
 use Nip\Records\Record;
 
 /**
@@ -27,9 +28,39 @@ abstract class AbstractEvent
     protected $name;
 
     /**
+     * @var Metadata
+     */
+    protected $metadata;
+
+    /**
      * @var Record|HasAuditTrailsRecordTrait
      */
     protected $auditable;
+
+    /**
+     * @return Metadata
+     */
+    public function getMetadata(): Metadata
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * @param $key
+     * @return Metadata|mixed|string|null
+     */
+    public function getMetadataValue($key)
+    {
+        return $this->metadata->get($key);
+    }
+
+    /**
+     * @param Metadata $metadata
+     */
+    public function setMetadata(Metadata $metadata): void
+    {
+        $this->metadata = $metadata;
+    }
 
     /**
      * @return mixed

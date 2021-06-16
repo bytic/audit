@@ -20,6 +20,7 @@ class EventFactory
         /** @var Event $event */
         $event = new $class();
         $event->setAuditable($trail->getAuditableRecord());
+        $event->setMetadata($trail->metadata);
         $event->setName($trail->getPropertyRaw('event'));
         return $event;
     }
@@ -30,7 +31,7 @@ class EventFactory
      */
     public static function eventClass($trail): string
     {
-        $repository = $trail->getManager();
+        $repository = $trail->getAuditableRecord()->getManager();
 
         if (method_exists($repository, 'getAuditTrailEventClass')) {
             return $repository->getAuditTrailEventClass($trail);

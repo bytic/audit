@@ -3,6 +3,9 @@
 /** @var \ByTIC\Audit\Models\AuditTrails\AuditTrail[] $trails */
 $trails_repository = \ByTIC\Audit\Utility\AuditModels::trails();
 
+/** @var \ByTIC\Audit\Models\AuditTrails\AuditTrail
+ * $trails
+ */
 if (count($trails) < 1) {
     echo $this->Messages()->info($trails_repository->getMessage('dnx'));
     return;
@@ -16,9 +19,7 @@ if (count($trails) < 1) {
             <?php echo translator()->trans('event'); ?>
         </th>
         <th>
-            <?php echo translator()->trans('user'); ?>
-        </th>
-        <th>
+            <?php echo translator()->trans('user'); ?> //
             <?php echo translator()->trans('created'); ?>
         </th>
     </tr>
@@ -26,23 +27,34 @@ if (count($trails) < 1) {
     <tbody>
     <?php
     foreach ($trails as $key => $item) { ?>
+        <?php
+        $user = $item->getUser();
+        $notes = $item->metadata->get('notes');
+        ?>
         <tr>
             <td>
                 <?php echo $item->getEvent()->getFormattedMessage(); ?>
+                <?php if (!empty($notes)) { ?>
+                    <p class="border-top mt-3">
+                        <small>
+                            <strong>NOTES: </strong>
+                            <?= $notes; ?>
+                        </small>
+                    </p>
+                <?php } ?>
             </td>
             <td>
-                <?php
-                $user = $item->getUser(); ?>
-                <?php
-                echo $user ? $user->getName() : '--'; ?>
-            </td>
-            <td>
-                <div style="display: block">
+                <div>
+                    <span class="badge bg-primary text-white">
+                        <?php echo $user ? $user->getName() : '--'; ?>
+                    </span>
+                </div>
+                <small class="d-block">
                     <?php echo $item->performed_at->toDayDateTimeString(); ?>
-                </div>
-                <div style="display: block">
+                </small>
+                <small class="d-block">
                     <?php echo $item->created_at->toDayDateTimeString(); ?>
-                </div>
+                </small>
             </td>
         </tr>
         <?php

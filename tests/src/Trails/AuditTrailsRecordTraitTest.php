@@ -7,7 +7,6 @@ use ByTIC\Audit\Tests\AbstractTestCase;
 use ByTIC\Audit\Tests\Fixtures\Models\Articles\Articles;
 use ByTIC\Audit\Utility\AuditModels;
 
-
 /**
  * Class AuditTrailsRecordTraitTest
  * @package ByTIC\Audit\Tests\Trails
@@ -33,5 +32,4 @@ class AuditTrailsRecordTraitTest extends AbstractTestCase
         unset($audit_repository);
         \Mockery::close();
     }
-
 }

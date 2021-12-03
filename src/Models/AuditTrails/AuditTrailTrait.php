@@ -38,7 +38,7 @@ trait AuditTrailTrait
     /**
      * @var string
      */
-    static protected $createTimestamps = ['created_at'];
+    protected static $createTimestamps = ['created_at'];
 
     public function bootAuditTrailTrait()
     {

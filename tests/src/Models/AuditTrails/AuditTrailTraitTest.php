@@ -13,7 +13,6 @@ use Nip\Records\AbstractModels\Record;
  */
 class AuditTrailTraitTest extends \ByTIC\Audit\Tests\AbstractTestCase
 {
-
     public function test_cast_metadata()
     {
         $item = new AuditTrail();

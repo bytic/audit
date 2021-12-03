@@ -2,7 +2,6 @@
 
 namespace ByTIC\Audit\Models\AuditTrails;
 
-
 use Nip\Records\EventManager\Events\Event;
 
 /**

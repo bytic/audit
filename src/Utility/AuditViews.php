@@ -11,7 +11,6 @@ use ByTIC\Audit\Trails\HasAuditableTrailsRecordTrait;
  */
 class AuditViews
 {
-
     /**
      * @param HasAuditableTrailsRecordTrait $item
      *

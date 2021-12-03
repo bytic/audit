@@ -94,5 +94,5 @@ abstract class AbstractEvent
         $this->auditable = $auditable;
     }
 
-    abstract public function getFormattedMessage() : string;
+    abstract public function getFormattedMessage(): string;
 }

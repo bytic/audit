@@ -19,5 +19,4 @@ class Article extends Record
     {
         return Articles::class;
     }
-
 }

@@ -15,9 +15,9 @@ class AuditModels
     protected static $models = [];
 
     /**
-     * @return AuditTrails
+     * @return void
      */
-    public static function reset()
+    public static function reset(): void
     {
         static::$models = [];
     }

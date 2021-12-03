@@ -23,7 +23,7 @@ class AuditTrailBuilder
 
     public static function for($model, $event = null): AuditTrailBuilder
     {
-        $builder = new static();
+        $builder = new self();
         $builder->forModel($model);
         $builder->withEvent($event);
         $builder->withUser(null);

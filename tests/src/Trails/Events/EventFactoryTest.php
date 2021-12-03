@@ -5,6 +5,7 @@ namespace ByTIC\Audit\Tests\Trails\Events;
 use ByTIC\Audit\Tests\AbstractTestCase;
 use ByTIC\Audit\Trails\Events\Event;
 use ByTIC\Audit\Trails\Events\EventFactory;
+use Mockery;
 
 /**
  * Class EventFactoryTest

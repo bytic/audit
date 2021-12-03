@@ -2,15 +2,17 @@
 
 namespace ByTIC\Audit;
 
-use Nip\Container\ServiceProviders\Providers\AbstractSignatureServiceProvider;
-use Nip\Container\ServiceProviders\Providers\BootableServiceProviderInterface;
+use ByTIC\Audit\Utility\PackageConfig;
+use ByTIC\PackageBase\BaseBootableServiceProvider;
 
 /**
  * Class AuditServiceProvider
  * @package ByTIC\Audit
  */
-class AuditServiceProvider extends AbstractSignatureServiceProvider implements BootableServiceProviderInterface
+class AuditServiceProvider extends BaseBootableServiceProvider
 {
+    public const NAME = 'audit';
+
     /**
      * @inheritdoc
      */
@@ -26,11 +28,14 @@ class AuditServiceProvider extends AbstractSignatureServiceProvider implements B
         return [];
     }
 
-    public function boot()
+    public function migrations(): ?string
     {
-        $this->getContainer()->get('migrations.migrator')->path(dirname(__DIR__) . '/migrations/');
-    }
+        if (PackageConfig::shouldRunMigrations()) {
+            return dirname(__DIR__) . '/migrations/';
+        }
 
+        return null;
+    }
 
 //    protected function registerCommands()
 //    {

@@ -10,4 +10,9 @@ return [
     'tables' => [
         'trails' => AuditTrails::TABLE,
     ],
+
+    'database' => [
+        'connection' => 'main',
+        'migrations' => true,
+    ],
 ];

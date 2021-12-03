@@ -50,7 +50,7 @@ class AuditTrailBuilderTest extends AbstractTestCase
     {
         $audit_repository = $this->getAuditTrailsMock();
         $audit_repository->shouldReceive('save')->with(\Mockery::capture($trail));
-        AuditModels::trails( $audit_repository);
+        AuditModels::trails($audit_repository);
 
         $repository = Articles::instance();
         $article = $repository->getNew();

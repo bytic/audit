@@ -11,7 +11,6 @@ use Nip\Records\Locator\ModelLocator;
  */
 class AuditModels
 {
-
     protected static $models = [];
 
     /**

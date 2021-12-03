@@ -10,7 +10,6 @@ use ByTIC\Audit\Utility\AuditModels;
  */
 trait HasAuditTrailsRepositoryTrait
 {
-
     public function bootHasAuditTrailsRepositoryTrait()
     {
         $this->initRelations();

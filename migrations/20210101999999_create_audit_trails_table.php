@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use ByTIC\Audit\Utility\AuditModels;
 use Phinx\Migration\AbstractMigration;
 
 /**
@@ -22,7 +23,7 @@ final class CreateAuditTrailsTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Audit\Utility\AuditModels::trails()->getTable();
+        $table_name = AuditModels::trailsTable();
         $exists = $this->hasTable($table_name);
         if ($exists) {
             return;

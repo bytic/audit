@@ -33,6 +33,11 @@ class AuditModels extends ModelFinder
         return static::getModels('trails', AuditTrails::class);
     }
 
+    public static function trailsTable(): string
+    {
+        return static::getTable('trails', AuditTrails::TABLE);
+    }
+
     protected static function setModels($type, $repository)
     {
         static::$models[$type] = $repository;

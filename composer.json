@@ -32,7 +32,7 @@
     "bytic/auth": "^0.9|^1.0",
     "bytic/orm": "^0.9|^1.0",
     "bytic/event-dispatcher": "^0.9|^1.0",
-    "symfony/var-dumper": "^5.2"
+    "symfony/var-dumper": "^5.2|^6.0"
   },
   "require-dev": {
     "bytic/http": "^0.9|^1.0",
@@ -58,5 +58,10 @@
     ],
     "stan": "phpstan analyse",
     "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }

@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ByTIC\Audit\Utility;
 
+use ByTIC\Audit\AuditServiceProvider;
 use ByTIC\Audit\Models\AuditTrails\AuditTrails;
-use Nip\Records\Locator\ModelLocator;
+use ByTIC\PackageBase\Utility\ModelFinder;
 
 /**
  * Class AuditModels
  * @package ByTIC\Audit\Utility
  */
-class AuditModels
+class AuditModels extends ModelFinder
 {
-    protected static $models = [];
-
     /**
      * @return void
      */
@@ -37,37 +38,8 @@ class AuditModels
         static::$models[$type] = $repository;
     }
 
-
-    /**
-     * @param string $type
-     * @param string $default
-     * @return mixed|\Nip\Records\AbstractModels\RecordManager
-     */
-    protected static function getModels($type, $default)
+    protected static function packageName(): string
     {
-        if (!isset(static::$models[$type])) {
-            $modelManager = static::getConfigVar($type, $default);
-            return static::$models[$type] = ModelLocator::get($modelManager);
-        }
-
-        return static::$models[$type];
-    }
-
-    /**
-     * @param string $type
-     * @param null|string $default
-     * @return string
-     */
-    protected static function getConfigVar($type, $default = null)
-    {
-        if (!function_exists('config')) {
-            return $default;
-        }
-        $varName = 'payments.models.' . $type;
-        $config = config();
-        if ($config->has($varName)) {
-            return $config->get($varName);
-        }
-        return $default;
+        return AuditServiceProvider::NAME;
     }
 }

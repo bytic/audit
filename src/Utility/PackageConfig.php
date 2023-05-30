@@ -1,19 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ByTIC\Audit\Utility;
 
 use ByTIC\Audit\AuditServiceProvider;
 use Exception;
-use Nip\Utility\Traits\SingletonTrait;
 
 /**
  *
  */
 class PackageConfig extends \ByTIC\PackageBase\Utility\PackageConfig
 {
-    use SingletonTrait;
-
     protected $name = AuditServiceProvider::NAME;
+
+    public static function configPath(): string
+    {
+        return __DIR__ . '/../../config/audit.php';
+    }
+
 
     /**
      * @return string|null

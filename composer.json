@@ -45,19 +45,6 @@
   "suggest": {
   },
   "scripts": {
-    "tests": [
-      "@analyse",
-      "@test"
-    ],
-    "test": [
-      "phpunit"
-    ],
-    "analyse": [
-      "@stan",
-      "@psalm"
-    ],
-    "stan": "phpstan analyse",
-    "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
   },
   "config": {
     "allow-plugins": {

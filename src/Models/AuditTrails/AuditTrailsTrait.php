@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ByTIC\Audit\Models\AuditTrails;
 
+use ByTIC\Audit\Utility\AuditModels;
 use Nip\Records\EventManager\Events\Event;
 
 /**
@@ -26,6 +29,11 @@ trait AuditTrailsTrait
                 );
             }
         );
+    }
+
+    public function generateTable(): string
+    {
+        return AuditModels::trailsTable();
     }
 
     protected function initRelations()

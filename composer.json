@@ -29,6 +29,7 @@
     "php": "^7.2|^8.0",
     "bytic/package-base": "^1.0",
     "psr/http-message": "^1.0",
+    "bytic/actions": "^0.9|^1.0|dev-main",
     "bytic/auth": "^0.9|^1.0",
     "bytic/orm": "^0.9|^1.0",
     "bytic/event-dispatcher": "^0.9|^1.0",

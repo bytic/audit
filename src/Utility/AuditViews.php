@@ -3,6 +3,7 @@
 namespace ByTIC\Audit\Utility;
 
 use ByTIC\Audit\Application\Library\View\View;
+use ByTIC\Audit\Trails\Actions\Finder\FindAuditTrails;
 use ByTIC\Audit\Trails\HasAuditableTrailsRecordTrait;
 
 /**
@@ -18,7 +19,7 @@ class AuditViews
      */
     public static function adminTrailsModelList($item)
     {
-        $trails = $item->getAuditTrails();
+        $trails = FindAuditTrails::forSubject($item)->fetch();
 
         return self::loadView(
             '/admin/trails/lists/list-model',

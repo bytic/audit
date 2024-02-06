@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 /** @var \ByTIC\Audit\Models\AuditTrails\AuditTrail[] $trails */
+
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+
 $trails_repository = \ByTIC\Audit\Utility\AuditModels::trails();
 
 /** @var \ByTIC\Audit\Models\AuditTrails\AuditTrail
@@ -11,16 +17,19 @@ if (count($trails) < 1) {
     return;
 }
 
+$cloner = new VarCloner();
+$dumper = new HtmlDumper();
+$dumper->setTheme('light');
 ?>
 <table class="table table-striped table-bordered donation-sessions">
     <thead>
     <tr>
         <th>
-            <?php echo translator()->trans('event'); ?>
+            <?= translator()->trans('event'); ?>
         </th>
         <th>
-            <?php echo translator()->trans('user'); ?> //
-            <?php echo translator()->trans('created'); ?>
+            <?= translator()->trans('user'); ?> //
+            <?= translator()->trans('created'); ?>
         </th>
     </tr>
     </thead>
@@ -29,31 +38,28 @@ if (count($trails) < 1) {
     foreach ($trails as $key => $item) { ?>
         <?php
         $user = $item->getUser();
-        $notes = $item->metadata->get('notes');
+        $meta = $item->metadata->toArray();
         ?>
         <tr>
             <td>
-                <?php echo $item->getEvent()->getFormattedMessage(); ?>
-                <?php if (!empty($notes)) { ?>
-                    <p class="border-top mt-3">
-                        <small>
-                            <strong>NOTES: </strong>
-                            <?= $notes; ?>
-                        </small>
-                    </p>
-                <?php } ?>
+                <?= $item->getEvent()->getFormattedMessage(); ?>
+                <p class="border-top mt-3">
+                    <small>
+                        <?= $dumper->dump($cloner->cloneVar($meta), true); ?>
+                    </small>
+                </p>
             </td>
             <td>
                 <div>
                     <span class="badge bg-primary text-white">
-                        <?php echo $user ? $user->getName() : '--'; ?>
+                        <?= $user ? $user->getName() : '--'; ?>
                     </span>
                 </div>
                 <small class="d-block">
-                    <?php echo $item->performed_at->toDayDateTimeString(); ?>
+                    <?= $item->performed_at->toDayDateTimeString(); ?>
                 </small>
                 <small class="d-block">
-                    <?php echo $item->created_at->toDayDateTimeString(); ?>
+                    <?= $item->created_at->toDayDateTimeString(); ?>
                 </small>
             </td>
         </tr>

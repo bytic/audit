@@ -4,6 +4,7 @@ namespace ByTIC\Audit\Trails\Events;
 
 use ByTIC\Audit\Models\AuditTrails\AuditTrail;
 use ByTIC\Audit\Trails\AuditableModel\HasAuditTrailsRecordTrait;
+use ByTIC\Audit\Trails\AuditTrailBuilder;
 use ByTIC\DataObjects\Casts\Metadata\Metadata;
 use Nip\Records\Record;
 
@@ -92,6 +93,27 @@ abstract class AbstractEvent
     public function setAuditable($auditable): void
     {
         $this->auditable = $auditable;
+    }
+
+    /**
+     * Get the event name/type for use when creating audit trails.
+     * Override this in subclasses to specify the default event type.
+     */
+    public static function getEventName(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * Create an audit trail for the given auditable model using this event class.
+     *
+     * @param Record|HasAuditTrailsRecordTrait $auditable
+     * @param array $metadata
+     * @return AuditTrailBuilder
+     */
+    public static function addTrail($auditable, array $metadata = []): AuditTrailBuilder
+    {
+        return AuditTrailBuilder::for($auditable, static::getEventName())->withMetadata($metadata);
     }
 
     abstract public function getFormattedMessage(): string;

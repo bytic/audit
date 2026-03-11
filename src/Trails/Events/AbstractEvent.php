@@ -26,7 +26,7 @@ abstract class AbstractEvent
     public const DOWNLOAD = 'DOWNLOAD'; // Downloaded a file
     public const EMAIL = 'EMAIL'; // Sent an email
 
-    protected $name;
+    protected $name = null;
 
     /**
      * @var Metadata
@@ -68,6 +68,13 @@ abstract class AbstractEvent
      */
     public function getName()
     {
+        if ($this->name === null) {
+            if (defined(static::class . '::NAME')) {
+                $this->name = constant(static::class . '::NAME');
+            } else {
+                $this->name = static::class;
+            }
+        }
         return $this->name;
     }
 
@@ -96,15 +103,6 @@ abstract class AbstractEvent
     }
 
     /**
-     * Get the event name/type for use when creating audit trails.
-     * Override this in subclasses to specify the default event type.
-     */
-    public static function getEventName(): ?string
-    {
-        return null;
-    }
-
-    /**
      * Create an audit trail for the given auditable model using this event class.
      *
      * @param Record|HasAuditTrailsRecordTrait $auditable
@@ -113,7 +111,13 @@ abstract class AbstractEvent
      */
     public static function addTrail($auditable, array $metadata = []): AuditTrailBuilder
     {
-        return AuditTrailBuilder::for($auditable, static::getEventName())->withMetadata($metadata);
+        $event = static::create();
+        return AuditTrailBuilder::for($auditable, $event->getName())->withMetadata($metadata);
+    }
+
+    public static function create(): static
+    {
+        return new static();
     }
 
     abstract public function getFormattedMessage(): string;
